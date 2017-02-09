@@ -1,12 +1,12 @@
 FROM yfix/baseimage
 
-MAINTAINER Yuri Vysotskiy (yfix) <yfix.dev@gmail.com>
+MAINTAINER Lorenzo Salvadorini (lorello) <lorello@openweb.it>
 
-ENV MYDUMPER_VERSION_MAJOR 0.9
-ENV MYDUMPER_VERSION 0.9.3
+ENV MYDUMPER_VERSION master 
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
+    unzip \
     build-essential \
     cmake \
     libglib2.0-dev \
@@ -16,16 +16,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python-sphinx \
   \
   && cd /tmp \
-  && wget https://launchpad.net/mydumper/$MYDUMPER_VERSION_MAJOR/$MYDUMPER_VERSION/+download/mydumper-$MYDUMPER_VERSION.tar.gz \
-  && tar -xzvf mydumper-$MYDUMPER_VERSION.tar.gz \
-  && cd mydumper-$MYDUMPER_VERSION \
+  && wget https://github.com/maxbube/mydumper/archive/master.zip 
+  && unzip mydumper-master.zip \
+  && cd mydumper-master \
   && cmake . -DCMAKE_INSTALL_PREFIX=/usr/local \
   && make \
   && make install \
   \
   && cd .. \
-  && rm -rvf mydumper-$MYDUMPER_VERSION.tar.gz \
-  && rm -rvf mydumper-$MYDUMPER_VERSION \
+  && rm -rvf mydumper-master.zip \
+  && rm -rvf mydumper-master \
   \
   && apt-get purge -y --auto-remove \
     libglib2.0-dev \
@@ -58,3 +58,5 @@ ADD myloader.sh /myloader.sh
 
 WORKDIR /
 CMD /mydumper.sh
+
+
