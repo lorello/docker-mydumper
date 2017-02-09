@@ -20,14 +20,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && cd /tmp \
   && wget https://github.com/maxbube/mydumper/archive/master.zip \ 
   && unzip master.zip \
-  && cd master \
+  && cd mydumper-master \
   && cmake . -DCMAKE_INSTALL_PREFIX=/usr/local \
   && make \
   && make install \
   \
   && cd .. \
   && rm -rvf master.zip \
-  && rm -rvf master \
+  && rm -rvf mydumper-master \
   \
   && apt-get purge -y --auto-remove \
     libglib2.0-dev \
