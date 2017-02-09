@@ -3,7 +3,7 @@ FROM yfix/baseimage
 MAINTAINER Yuri Vysotskiy (yfix) <yfix.dev@gmail.com>
 
 ENV MYDUMPER_VERSION_MAJOR 0.9
-ENV MYDUMPER_VERSION 0.9.1
+ENV MYDUMPER_VERSION 0.9.3
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
