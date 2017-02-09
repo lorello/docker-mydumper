@@ -4,6 +4,8 @@ MAINTAINER Lorenzo Salvadorini (lorello) <lorello@openweb.it>
 
 ENV MYDUMPER_VERSION master 
 
+WORKDIR /tmp
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     unzip \
@@ -17,8 +19,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   \
   && cd /tmp \
   && wget https://github.com/maxbube/mydumper/archive/master.zip \ 
-  && unzip mydumper-master.zip \
-  && cd mydumper-master \
+  && unzip /tmp/mydumper-master.zip \
+  && cd /tmp/mydumper-master \
   && cmake . -DCMAKE_INSTALL_PREFIX=/usr/local \
   && make \
   && make install \
