@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python-sphinx \
   \
   && cd /tmp \
-  && wget https://github.com/maxbube/mydumper/archive/master.zip 
+  && wget https://github.com/maxbube/mydumper/archive/master.zip \ 
   && unzip mydumper-master.zip \
   && cd mydumper-master \
   && cmake . -DCMAKE_INSTALL_PREFIX=/usr/local \
