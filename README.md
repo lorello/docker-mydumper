@@ -1,13 +1,13 @@
 # docker-mydumper
-Yfix dockerized mydumper tool from percona.
 
-Current docker image needed because there is official one
-and I like nothing from currently existing implementations, so creating my own one :)
+Lorello dockerized mydumper tool from percona.
+
+Current docker image needed because nobody has the latest build from sources (v 0.9.3)
 
 ## Docker hub
 
-* https://hub.docker.com/r/yfix/mydumper
-* docker pull yfix/mydumper
+* https://hub.docker.com/r/lorello/mydumper
+* docker pull lorello/mydumper
 
 ## Useful links
 
@@ -15,8 +15,6 @@ and I like nothing from currently existing implementations, so creating my own o
 * https://www.percona.com/blog/2015/09/21/containing-logical-backups-mydumper-docker/
 * https://launchpad.net/mydumper
 * https://github.com/maxbube/mydumper
-* https://github.com/tophatmonocle/docker-mydumper
-* https://github.com/lcacciagioni/docker_mydumper
 
 ## Environmental variables
 
