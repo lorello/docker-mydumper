@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     zlib1g-dev \
     libpcre3-dev \
     python-sphinx \
+    moreutil \
   \
   && cd /tmp \
   && wget https://github.com/maxbube/mydumper/archive/master.zip \ 
@@ -55,10 +56,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && rm -rf /usr/share/{doc,man}/* \
   && rm -rf /var/lib/apt/lists/*
 
-ADD mydumper.sh /mydumper.sh
-ADD myloader.sh /myloader.sh
+ADD mydumper.sh /usr/local/bin/mydumper.sh
+ADD myloader.sh /usr/local/bin/myloader.sh
 
 WORKDIR /
-CMD /mydumper.sh
+
+CMD /usr/local/bin/mydumper.sh
 
 

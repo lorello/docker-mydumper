@@ -23,6 +23,12 @@ Current docker image needed because nobody has the latest build from sources (v 
 * `ORIGIN_DB_PORT`
 * `ORIGIN_DB_PASS`
 * `ORIGIN_DB_USER`
+* `ORIGIN_DB_SKIP`, is a regex, pass multiple values using `(db1|db2.table)` [default: test]
+* `LOG_PATH` [default: /dumpdir]
+* `LOCK_TYPE`, you can pass `--no-locks` tto skip locking [default: --less-locking --trx-consistency-only]
+* `THREADS` [default: 2]
+* `CHUNK_SIZE` [default: 5120] M
+* `ONG_QUERY_GUARD` [default: 3600] seconds
 * `DEST_DB_NAME`
 * `DEST_DB_HOST`
 * `DEST_DB_PORT`
