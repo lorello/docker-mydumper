@@ -1,4 +1,4 @@
-FROM yfix/baseimage
+FROM googlecontainer/ubuntu-slim:0.6
 
 MAINTAINER Lorenzo Salvadorini (lorello) <lorello@openweb.it>
 
@@ -7,16 +7,17 @@ ENV MYDUMPER_VERSION master
 WORKDIR /tmp
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
     wget \
     unzip \
     build-essential \
     cmake \
     libglib2.0-dev \
-    libmysqlclient15-dev \
+    libmysqlclient-dev \
     zlib1g-dev \
     libpcre3-dev \
     python-sphinx \
-    moreutil \
+    moreutils \
   \
   && cd /tmp \
   && wget https://github.com/maxbube/mydumper/archive/master.zip \ 
@@ -31,8 +32,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && rm -rvf mydumper-master \
   \
   && apt-get purge -y --auto-remove \
+    ca-certificates \
     libglib2.0-dev \
-    libmysqlclient15-dev \
+    libmysqlclient-dev \
     zlib1g-dev \
     libpcre3-dev \
     binutils \
