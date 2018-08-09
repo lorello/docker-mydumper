@@ -1,8 +1,28 @@
 # docker-mydumper
 
-Lorello dockerized mydumper tool from percona.
+dockerized mydumper tool from percona.
 
-Current docker image needed because nobody has the latest build from sources (v 0.9.3)
+Current docker image needed because nobody has the latest build from sources (v 0.9.5)
+
+## Example usage
+
+Supposing that:
+- mysql server runs in docker network `backplane`
+- the name of the container is *mysql*
+- the final backup dir is `/var/backups/mydumper`
+- `backup/XXXX` are valid credentials to access mysql tables
+
+A command to perform a backup is:
+ 
+```
+docker run -it --rm \
+    --net=backplane \
+    --volume /var/backups/mydumper:/var/tmp \
+    lorello/mydumper:0.9.5 \
+        --host mysql --user backup --password XXXX \
+        --compress --verbose 3 \
+        --outputdir /var/tmp
+```
 
 ## Docker hub
 
@@ -16,46 +36,4 @@ Current docker image needed because nobody has the latest build from sources (v 
 * https://launchpad.net/mydumper
 * https://github.com/maxbube/mydumper
 
-## Environmental variables
 
-* `ORIGIN_DB_NAME`
-* `ORIGIN_DB_HOST`
-* `ORIGIN_DB_PORT`
-* `ORIGIN_DB_PASS`
-* `ORIGIN_DB_USER`
-* `ORIGIN_DB_SKIP`, is a regex, pass multiple values using `(db1|db2.table)` [default: test]
-* `LOG_PATH` [default: /dumpdir]
-* `LOCK_TYPE`, you can pass `--no-locks` tto skip locking [default: --less-locking --trx-consistency-only]
-* `THREADS` [default: 2]
-* `CHUNK_SIZE` [default: 5120] M
-* `ONG_QUERY_GUARD` [default: 3600] seconds
-* `DEST_DB_NAME`
-* `DEST_DB_HOST`
-* `DEST_DB_PORT`
-* `DEST_DB_PASS`
-* `DEST_DB_USER`
-
-## Usage mode
-
-Try to have a folder writable by everyone in your pc since the image runs as `root` user.
-```bash
-$ sudo mkdir /tmp/dumpdir
-$ sudo chmod 0777 /tmp/dumpdir
-$ docker run --env-file=~/.env -v "/tmp/dumpdir:/dumpdir:rw"
-```
-The `env-file` is a simple txt file with the following format:
-```
-ORIGIN_DB_NAME=...
-ORIGIN_DB_HOST=...
-ORIGIN_DB_PORT=...
-ORIGIN_DB_PASS=...
-ORIGIN_DB_USER=...
-DEST_DB_NAME=...
-DEST_DB_HOST=...
-DEST_DB_PORT=...
-DEST_DB_PASS=...
-DEST_DB_USER=...
-```
-using the previous `env-file` example you can setup all the variables that you need to execute the dump of you database.
-
-> Replace the `...` with your information.
